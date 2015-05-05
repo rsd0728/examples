@@ -12,7 +12,7 @@
             'x-key:' + API_KEY +
             'x-timestamp:' + t + API_SECRET;
         String sig = EncodingUtil.convertToHex(Crypto.generateDigest('SHA1', Blob.valueOf(s))); 
-        w
+        
         req.setEndpoint(API_URL + uri);
         req.setMethod('GET');
         req.setHeader('X-Actor', ACTOR);
