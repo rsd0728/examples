@@ -104,8 +104,8 @@
         }
   ```
   
-  ### Open a Websocket session 
-  ```c#
+### Open a Websocket session 
+```c#
         internal JObject StartWSSession()
         {
             string json;
