@@ -12,7 +12,7 @@
             'x-key:' + API_KEY +
             'x-timestamp:' + t + API_SECRET;
         String sig = EncodingUtil.convertToHex(Crypto.generateDigest('SHA1', Blob.valueOf(s))); 
-        
+        w
         req.setEndpoint(API_URL + uri);
         req.setMethod('GET');
         req.setHeader('X-Actor', ACTOR);
@@ -110,7 +110,7 @@
         {
             string json;
 
-            WebRequest req = WebRequest.Create("ws-11.flow.net/session");
+            WebRequest req = WebRequest.Create("https://ws-11.flow.net/session");
             // add headers
             req.Method = "POST";
             req.ContentType = "application/json";
