@@ -145,7 +145,7 @@
                 this.ws.OnClose += ws_OnClose;
                 this.ws.OnError += ws_OnError;
 
-		// need heartbeat to keep connection alive
+                // need heartbeat to keep connection alive
                 this.heartbeatTimer = new Timer(20000);
                 this.heartbeatTimer.Elapsed += heartbeatTimer_Elapsed;
                 this.heartbeatTimer.Enabled = true;
@@ -158,7 +158,7 @@
             }
         }
         
-	internal void SendHeartbeat()
+        internal void SendHeartbeat()
         {
             if (this.ws != null && this.ws.IsAlive)
             {
@@ -189,7 +189,23 @@
                     UpdateUI(j);
             }
             
-        }        
+        }       
+        
+        public void Subscribe(Flow f)
+        {
+            if (this.ws != null && this.ws.IsAlive)
+            {
+                JObject jo = new JObject();
+                jo["type"] = "subscribe";
+                jo["value"] = "/drop/" + f.id;
+                jo["id"] = "flow_" + f.id;
+
+                this.subscribedFlows.Add(f);
+
+                this.ws.SendAsync(jo.ToString(), null);
+            }
+        }
+        
 ```
 
 ### Subscribe a user to a Flow (this is different from a websocket subscribe)
