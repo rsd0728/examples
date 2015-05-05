@@ -114,9 +114,9 @@
             // add headers
             req.Method = "POST";
             req.ContentType = "application/json";
-  	    addHeaders(req);
+            addHeaders(req);
 
-	    // no post body
+            // no post body
 
             HttpWebResponse res = (HttpWebResponse)req.GetResponse();
 
@@ -132,7 +132,7 @@
         {
             this.subscribedFlows = new List<Flow>();
 
-	    JObject sessionInfo = StartWSSession();
+            JObject sessionInfo = StartWSSession();
             if ((bool)sessionInfo["head"]["ok"])
             {
                 this.sessionId = (string)sessionInfo["body"]["id"];
@@ -202,7 +202,7 @@
 
                 this.subscribedFlows.Add(f);
 
-                this.ws.SendAsync(jo.ToString(), null);
+                this.ws.Send (jo.ToString(), null);
             }
         }
         
@@ -222,7 +222,6 @@
                                 new JProperty("isPublic", false)))));
 
             conn.PutJson("/identity/" + this.id + "/subscriptions.json", jo);
-            this.ReloadSubscriptions(conn);
         }
 ```
 
@@ -256,7 +255,6 @@
                     }
                 }
             }
-        }
 ```
 
 ### Load my Flows
